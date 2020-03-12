@@ -1,0 +1,9 @@
+C:\Users\yirle\Documents\projects\InventurProgramm\InventurProgramm\bin\Debug\InventurProgramm.exe.config
+C:\Users\yirle\Documents\projects\InventurProgramm\InventurProgramm\bin\Debug\InventurProgramm.exe
+C:\Users\yirle\Documents\projects\InventurProgramm\InventurProgramm\bin\Debug\InventurProgramm.pdb
+C:\Users\yirle\Documents\projects\InventurProgramm\InventurProgramm\obj\Debug\InventurProgramm.csprojAssemblyReference.cache
+C:\Users\yirle\Documents\projects\InventurProgramm\InventurProgramm\obj\Debug\InventurProgramm.Form1.resources
+C:\Users\yirle\Documents\projects\InventurProgramm\InventurProgramm\obj\Debug\InventurProgramm.Properties.Resources.resources
+C:\Users\yirle\Documents\projects\InventurProgramm\InventurProgramm\obj\Debug\InventurProgramm.csproj.GenerateResource.cache
+C:\Users\yirle\Documents\projects\InventurProgramm\InventurProgramm\obj\Debug\InventurProgramm.exe
+C:\Users\yirle\Documents\projects\InventurProgramm\InventurProgramm\obj\Debug\InventurProgramm.pdb

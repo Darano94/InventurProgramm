@@ -1,0 +1,2 @@
+monitor;144hz 1ms;asus;72fa1bc7-9e16-4d8b-bdad-baf13bad9115;FGHJKLGHJKL;21.03.2020 13:23:21
+laptop;MacBook Pro;Apple;2a793d17-679b-46b3-8cc5-51f475274674;SDFGHJK;21.03.2020 00:00:00

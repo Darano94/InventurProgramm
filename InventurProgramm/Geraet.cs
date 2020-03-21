@@ -65,6 +65,11 @@ namespace InventurProgramm
             return this.kaufdatum;
         }
 
+        public override string ToString()
+        {
+            return this.typ + ";" + this.bezeichnung + ";" + this.hersteller + ";" + this.inventurnummer + ";" + this.seriennummer + ";" + this.kaufdatum.ToString();
+        }
+
         //konstruktoren
         public Geraet()
         {

@@ -63,7 +63,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dddddddddddddToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.speichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ladenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.öffnenAusDateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -118,7 +122,7 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(9, 28);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(290, 22);
+            this.label6.Size = new System.Drawing.Size(559, 39);
             this.label6.TabIndex = 12;
             this.label6.Text = "Füge ein Gerät dem Inventar hinzu!";
             // 
@@ -219,7 +223,7 @@
             // 
             // panel1
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.lvAllItems);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox1);
@@ -227,7 +231,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(706, 657);
+            this.panel1.Size = new System.Drawing.Size(684, 594);
             this.panel1.TabIndex = 12;
             // 
             // groupBox2
@@ -280,7 +284,7 @@
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(6, 28);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(289, 22);
+            this.label13.Size = new System.Drawing.Size(555, 39);
             this.label13.TabIndex = 12;
             this.label13.Text = "Ändere ein Gerät aus dem Inventar";
             // 
@@ -388,12 +392,13 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dddddddddddddToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(704, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(680, 40);
             this.menuStrip1.TabIndex = 16;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -401,33 +406,59 @@
             // 
             this.dddddddddddddToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.speichernToolStripMenuItem,
-            this.ladenToolStripMenuItem});
+            this.saveAsToolStripMenuItem,
+            this.ladenToolStripMenuItem,
+            this.öffnenAusDateiToolStripMenuItem});
             this.dddddddddddddToolStripMenuItem.Name = "dddddddddddddToolStripMenuItem";
-            this.dddddddddddddToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.dddddddddddddToolStripMenuItem.Size = new System.Drawing.Size(91, 36);
             this.dddddddddddddToolStripMenuItem.Text = "Datei";
             // 
             // speichernToolStripMenuItem
             // 
             this.speichernToolStripMenuItem.Name = "speichernToolStripMenuItem";
-            this.speichernToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.speichernToolStripMenuItem.Text = "Speichern";
+            this.speichernToolStripMenuItem.Size = new System.Drawing.Size(390, 44);
+            this.speichernToolStripMenuItem.Text = "Speichern im akt. Verz.";
             this.speichernToolStripMenuItem.Click += new System.EventHandler(this.speichernToolStripMenuItem_Click);
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(390, 44);
+            this.saveAsToolStripMenuItem.Text = "Speichern unter...";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // ladenToolStripMenuItem
             // 
             this.ladenToolStripMenuItem.Name = "ladenToolStripMenuItem";
-            this.ladenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ladenToolStripMenuItem.Text = "Laden";
+            this.ladenToolStripMenuItem.Size = new System.Drawing.Size(390, 44);
+            this.ladenToolStripMenuItem.Text = "Öffnen aus akt. Verz.";
             this.ladenToolStripMenuItem.Click += new System.EventHandler(this.ladenToolStripMenuItem_Click);
+            // 
+            // öffnenAusDateiToolStripMenuItem
+            // 
+            this.öffnenAusDateiToolStripMenuItem.Name = "öffnenAusDateiToolStripMenuItem";
+            this.öffnenAusDateiToolStripMenuItem.Size = new System.Drawing.Size(390, 44);
+            this.öffnenAusDateiToolStripMenuItem.Text = "Öffnen aus...";
+            this.öffnenAusDateiToolStripMenuItem.Click += new System.EventHandler(this.öffnenAusDateiToolStripMenuItem_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(706, 657);
+            this.ClientSize = new System.Drawing.Size(684, 594);
             this.Controls.Add(this.panel1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(710, 665);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(710, 665);
             this.Name = "Form1";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inventur Programm";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -478,6 +509,10 @@
         private System.Windows.Forms.ToolStripMenuItem dddddddddddddToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem speichernToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ladenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ToolStripMenuItem öffnenAusDateiToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -121,9 +122,6 @@ namespace InventurProgramm
 
         private void lvAllItems_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            string[] propsSelected = new string[6];
-
             if(this.lvAllItems.SelectedItems.Count > 0)
             {
                 ListViewItem selectedItem = this.lvAllItems.SelectedItems[0];
@@ -134,8 +132,11 @@ namespace InventurProgramm
                 this.txtEditKaufdatum.Text = selectedItem.SubItems[4].Text;
                 this.txtEditInventurnummer.Text = selectedItem.SubItems[5].Text;
             }
-
-            /*
+            /*  
+             *  DER NACHFOLGENDE CODE FÜHRT NUR ZU PROBLEMEN UND KOMISCHEN CRASHS XD
+             *  
+             *  
+             *  
             //dictionary damit wir "benamte" array indexe haben 
             Dictionary<string, string> selectedProps = new Dictionary<string, string>();
 
@@ -210,20 +211,24 @@ namespace InventurProgramm
 
         private void speichernToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<Geraet> allItems = this.inv.getAllItems();
             string currentPath = System.IO.Directory.GetCurrentDirectory();
+            saveInventarToFile(this.inv, currentPath+"\\Inventar.txt");            
+        }
 
-            if (System.IO.File.Exists(currentPath + "\\File.txt"))
-                System.IO.File.Delete(currentPath + "\\File.txt");
+        private void saveInventarToFile(Inventar inv, string path)
+        {
+            List<Geraet> allItems = inv.getAllItems(); 
+            if (System.IO.File.Exists(path))
+                System.IO.File.Delete(path);
 
 
             if (allItems.Count > 0)
-            {    
-                foreach(Geraet g in allItems)
+            {
+                foreach (Geraet g in allItems)
                 {
-                    System.IO.File.AppendAllText(currentPath + "\\File.txt", g.ToString() + "\r\n");
+                    System.IO.File.AppendAllText(path, g.ToString() + "\r\n");
                 }
-                string info = "Die Geräte wurden unter: \"" + currentPath + "\\File.txt\" gespeichert!";
+                string info = "Die Geräte wurden unter: \"" + path + " gespeichert!";
                 MessageBox.Show(info, "Erfolgreich gespeichert!");
 
             }
@@ -233,19 +238,17 @@ namespace InventurProgramm
             }
         }
 
-        private void ladenToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ladeInventarAusDatei(string path)
         {
-            string currentPath = System.IO.Directory.GetCurrentDirectory();
-           
-            if (!System.IO.File.Exists(currentPath + "\\File.txt"))
+            if (!System.IO.File.Exists(path))
             {
-                MessageBox.Show("Es konnte im aktuellen Verzeichnis keine Datei gefunden werden. Stelle sicher, dass die File.txt im selben Ordner liegt wie dieses Programm oder speicher erst eine Liste ab", "Fehler beim Laden!");
+                MessageBox.Show("Es konnte im Verzeichnis keine Datei gefunden werden. Stelle sicher, dass die File.txt im selben Ordner liegt wie dieses Programm oder speicher erst eine Liste ab", "Fehler beim Laden!");
                 return;
             }
+            string[] lines = System.IO.File.ReadAllLines(path);
+            this.inv = new Inventar();
 
-            string[] lines = System.IO.File.ReadAllLines(currentPath + "\\File.txt");
-
-            foreach(string line in lines)
+            foreach (string line in lines)
             {
                 string[] props = line.Split(';');
                 Geraet g = new Geraet();
@@ -257,7 +260,40 @@ namespace InventurProgramm
                 DateTime dt = Convert.ToDateTime(props[5]);
                 g.setKaufdatum(dt);
                 this.inv.addItem(g);
-                populateListView(this.lvAllItems, this.inv.getAllItems());
+            }
+            populateListView(this.lvAllItems, this.inv.getAllItems());
+
+        }
+
+        private void ladenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string currentPath = System.IO.Directory.GetCurrentDirectory();
+            ladeInventarAusDatei(currentPath + "\\Inventar.txt");
+            
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.saveFileDialog1.InitialDirectory = Directory.GetCurrentDirectory();
+            this.saveFileDialog1.Title = "Wähle einen Speicherort aus";
+            this.saveFileDialog1.Filter = "Text Dateien |*.txt";
+            if (this.saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string fullPath = this.saveFileDialog1.FileName;
+                saveInventarToFile(this.inv, fullPath);
+            }
+
+        }
+
+        private void öffnenAusDateiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.openFileDialog1.InitialDirectory = Directory.GetCurrentDirectory();
+            this.openFileDialog1.Title = "Wähle eine Datei aus";
+            this.openFileDialog1.Filter = "Text Dateien |*.txt";
+            if (this.openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string fullPath = this.openFileDialog1.FileName;
+                ladeInventarAusDatei(fullPath);
             }
         }
     }
